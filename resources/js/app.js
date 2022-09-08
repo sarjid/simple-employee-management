@@ -4,8 +4,7 @@ import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 const app = createApp({});
 import AddNewEmployee from "./components/AddNewEmployee.vue";
-import ExampleComponent from "./components/ExampleComponent.vue";
+
 app.component("add-new-employee", AddNewEmployee);
-app.component("example-component", ExampleComponent);
 app.use(ElementPlus);
 app.mount("#app");

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmployeeRequest;
+use App\Http\Requests\EmployeeUpdate;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use DataTables;
@@ -24,9 +26,10 @@ class EmployeeController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editEmployee">Edit</a>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="modal"
+                            data-target="#editModal"  data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn-outline rounded-pill btn-sm editEmployee" >Edit</a>';
 
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteEmployee">Delete</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-del rounded-pill btn-sm deleteEmployee" >Delete</a>';
 
                     return $btn;
                 })
@@ -52,9 +55,9 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Employee $employee)
+    public function store(EmployeeRequest $request, Employee $employee)
     {
-        $employee->create($request->all());
+        $employee->create($request->validated());
         return response()->json(['message' => 'added Success'], 200);
     }
 
@@ -66,7 +69,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        return response()->json($employee, 200);
     }
 
     /**
@@ -87,9 +90,10 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(EmployeeRequest $request, Employee $employee)
     {
-        //
+        $employee->update($request->validated());
+        return response()->json(['message' => 'Update Success'], 200);
     }
 
     /**

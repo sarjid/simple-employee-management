@@ -11,12 +11,16 @@ const schema = yup.object({
 const submit = async (values, { resetForm }) => {
     const res = await axios.post("/employee", values);
     if (res.status === 200) {
+        var oTable = $(".data-table").dataTable();
+        oTable.fnDraw();
+
         ElNotification({
             title: "Success",
             message: "Added Success",
             type: "success",
         });
         resetForm();
+        $(".close").click();
     }
 };
 </script>
