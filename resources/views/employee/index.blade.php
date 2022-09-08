@@ -11,14 +11,8 @@
                 <div class="card">
                     <div class="card-header">
                         {{ __('Employee List') }}
-                        {{-- <a href="{{ route('employee.create') }}" class="btn btn-danger rounded-pill"
-                            style="float: right;">Add
-                            New Employee</a> --}}
 
-                        <button type="button" class="btn btn-danger rounded-pill" data-toggle="modal"
-                            data-target="#createModal" style="float: right;">
-                            Add New
-                        </button>
+                        <add-employee></add-employee>
 
                     </div>
 
@@ -41,27 +35,8 @@
         </div>
     </div>
 
-    <!-- Create Modal -->
-    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="createModalLabel">Add New Employee</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <add-new-employee></add-new-employee>
-                </div>
-                {{-- <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div> --}}
-            </div>
-        </div>
-    </div>
+
+
 
     <!-- edit Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"

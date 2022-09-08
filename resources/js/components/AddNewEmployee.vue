@@ -27,50 +27,97 @@ const submit = async (values, { resetForm }) => {
 
 <template>
     <div>
-        <Form
-            @submit="submit"
-            :validation-schema="schema"
-            v-slot="{ errors, isSubmitting }"
+        <button
+            type="button"
+            class="btn btn-danger rounded-pill"
+            data-toggle="modal"
+            data-target="#createModal"
+            style="float: right"
         >
-            <div class="form-group">
-                <label for="name">Name</label>
-                <Field
-                    type="text"
-                    class="form-control"
-                    id="name"
-                    name="name"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter name"
-                    :class="{ 'is-invalid': errors.name }"
-                />
-                <span class="text-danger">{{ errors.name }}</span>
-            </div>
+            Add New
+        </button>
+        <div
+            class="modal fade"
+            id="createModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="createModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5
+                            class="modal-title"
+                            style="color: black"
+                            id="createModalLabel"
+                        >
+                            Add New Employee
+                        </h5>
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <Form
+                            @submit="submit"
+                            :validation-schema="schema"
+                            v-slot="{ errors, isSubmitting }"
+                        >
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <Field
+                                    type="text"
+                                    class="form-control"
+                                    id="name"
+                                    name="name"
+                                    aria-describedby="emailHelp"
+                                    placeholder="Enter name"
+                                    :class="{ 'is-invalid': errors.name }"
+                                />
+                                <span class="text-danger">{{
+                                    errors.name
+                                }}</span>
+                            </div>
 
-            <div class="form-group">
-                <label for="name">Designation</label>
-                <Field
-                    type="text"
-                    class="form-control"
-                    id="name"
-                    name="designation"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter designation"
-                    :class="{ 'is-invalid': errors.designation }"
-                />
-                <span class="text-danger">{{ errors.designation }}</span>
-            </div>
+                            <div class="form-group">
+                                <label for="name">Designation</label>
+                                <Field
+                                    type="text"
+                                    class="form-control"
+                                    id="name"
+                                    name="designation"
+                                    aria-describedby="emailHelp"
+                                    placeholder="Enter designation"
+                                    :class="{
+                                        'is-invalid': errors.designation,
+                                    }"
+                                />
+                                <span class="text-danger">{{
+                                    errors.designation
+                                }}</span>
+                            </div>
 
-            <button
-                type="submit"
-                class="btn btn-info mt-2"
-                :disabled="isSubmitting"
-            >
-                Submit
-                <span
-                    v-show="isSubmitting"
-                    class="spinner-border spinner-border-sm mr-1"
-                ></span>
-            </button>
-        </Form>
+                            <button
+                                type="submit"
+                                class="btn btn-info mt-2"
+                                :disabled="isSubmitting"
+                            >
+                                Submit
+                                <span
+                                    v-show="isSubmitting"
+                                    class="spinner-border spinner-border-sm mr-1"
+                                ></span>
+                            </button>
+                        </Form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>

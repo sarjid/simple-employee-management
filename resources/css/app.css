@@ -1,0 +1,29 @@
+.btn-outline {
+    border: 2px solid #008b8b;
+    color: #008b8b;
+    margin-right: 3px;
+    font-weight: bolder;
+}
+
+.btn-outline:hover {
+    background: #008b8b;
+    color: #fff;
+}
+
+/* fore delete button  */
+.btn-outline-del {
+    border: 2px solid #e3342f;
+    color: #e3342f;
+    margin-right: 3px;
+    font-weight: bolder;
+}
+
+.btn-outline-del:hover {
+    background: #e3342f;
+    color: #fff;
+}
+
+.card-header {
+    background: #008b8b;
+    color: #fff;
+}

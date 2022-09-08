@@ -20,7 +20,7 @@
     @yield('css')
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -91,37 +91,7 @@
         </main>
     </div>
 
-    <style>
-        .btn-outline {
-            border: 2px solid #008B8B;
-            color: #008B8B;
-            margin-right: 3px;
-            font-weight: bolder;
-        }
 
-        .btn-outline:hover {
-            background: #008B8B;
-            color: #fff;
-        }
-
-        /* fore delete button  */
-        .btn-outline-del {
-            border: 2px solid #E3342F;
-            color: #E3342F;
-            margin-right: 3px;
-            font-weight: bolder;
-        }
-
-        .btn-outline-del:hover {
-            background: #E3342F;
-            color: #fff;
-        }
-
-        .card-header {
-            background: #008B8B;
-            color: #fff;
-        }
-    </style>
 
     @yield('scripts')
 
