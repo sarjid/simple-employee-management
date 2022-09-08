@@ -17,6 +17,9 @@
         integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
         crossorigin="anonymous" />
 
+
+    @yield('css')
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -36,7 +39,8 @@
                             Register</a>
                     @endif
                 @else
-                    <a href="" class="btn btn-outline rounded-pill"> <i class="fa fa-users"></i>
+                    <a href="{{ route('employee.index') }}" class="btn btn-outline rounded-pill"> <i
+                            class="fa fa-users"></i>
                         Employee</a>
 
                 @endguest
@@ -119,6 +123,10 @@
             color: #fff;
         }
     </style>
+
+    @yield('scripts')
+
+
 </body>
 
 </html>
