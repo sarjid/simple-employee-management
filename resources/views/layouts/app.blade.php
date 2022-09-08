@@ -42,6 +42,10 @@
                             class="fa fa-users"></i>
                         Employee</a>
 
+                    <a href="{{ route('employeeinfo.index') }}" class="btn btn-outline rounded-pill"> <i
+                            class="fa fa-users"></i>
+                        Add Information</a>
+
                 @endguest
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

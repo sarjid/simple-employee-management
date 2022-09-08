@@ -9,6 +9,21 @@ use Yajra\DataTables\Facades\DataTables;
 
 class EmployeeController extends Controller
 {
+
+    public function all(Request $request)
+    {
+        $limit = $request->limit;
+        $q = Employee::select('id', 'name', 'designation');
+        if ($request->search != null) {
+            $q->where(function ($qry) use ($request) {
+                $qry->orWhere('designation', 'like', '%' . $request->search . '%');
+            });
+        }
+        $employees = $q->paginate($limit);
+
+
+        return response()->json($employees, 200);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,12 +37,9 @@ class EmployeeController extends Controller
             return DataTables::of($employee)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-
                     $btn = '<a href="javascript:void(0)" data-toggle="modal"
                             data-target="#editModal"  data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn-outline rounded-pill btn-sm editEmployee" >Edit</a>';
-
                     $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-del rounded-pill btn-sm deleteEmployee" >Delete</a>';
-
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -42,9 +54,9 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EmployeeRequest $request, Employee $employee)
+    public function store(EmployeeRequest $request)
     {
-        $employee->create($request->validated());
+        Employee::create($request->validated());
         return response()->json(['message' => 'added Success'], 200);
     }
 

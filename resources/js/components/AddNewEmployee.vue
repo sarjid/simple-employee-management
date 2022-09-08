@@ -47,11 +47,7 @@ const submit = async (values, { resetForm }) => {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5
-                            class="modal-title"
-                            style="color: black"
-                            id="createModalLabel"
-                        >
+                        <h5 class="modal-title cs" id="createModalLabel">
                             Add New Employee
                         </h5>
                         <button
@@ -70,7 +66,7 @@ const submit = async (values, { resetForm }) => {
                             v-slot="{ errors, isSubmitting }"
                         >
                             <div class="form-group">
-                                <label for="name">Name</label>
+                                <label for="name" class="cs">Name</label>
                                 <Field
                                     type="text"
                                     class="form-control"
@@ -86,7 +82,7 @@ const submit = async (values, { resetForm }) => {
                             </div>
 
                             <div class="form-group">
-                                <label for="name">Designation</label>
+                                <label for="name" class="cs">Designation</label>
                                 <Field
                                     type="text"
                                     class="form-control"
@@ -121,3 +117,9 @@ const submit = async (values, { resetForm }) => {
         </div>
     </div>
 </template>
+
+<style>
+.cs {
+    color: black;
+}
+</style>

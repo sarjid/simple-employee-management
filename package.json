@@ -19,6 +19,7 @@
     "dependencies": {
         "element-plus": "^2.2.16",
         "jquery": "^3.6.1",
+        "laravel-vue-pagination": "^3.0.0",
         "vee-validate": "^4.6.7",
         "yup": "^0.32.11"
     }

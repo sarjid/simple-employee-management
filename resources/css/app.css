@@ -1,29 +1,43 @@
 .btn-outline {
-    border: 2px solid #008b8b;
-    color: #008b8b;
+    border: 2px solid #4b0082;
+    color: #4b0082;
     margin-right: 3px;
     font-weight: bolder;
 }
 
 .btn-outline:hover {
-    background: #008b8b;
+    background: #4b0082;
     color: #fff;
 }
 
 /* fore delete button  */
 .btn-outline-del {
-    border: 2px solid #e3342f;
-    color: #e3342f;
+    border: 2px solid #ff2400;
+    color: #ff2400;
     margin-right: 3px;
     font-weight: bolder;
 }
 
 .btn-outline-del:hover {
-    background: #e3342f;
+    background: #ff2400;
     color: #fff;
 }
 
 .card-header {
-    background: #008b8b;
+    background: #4b0082;
     color: #fff;
+}
+
+.page-link.active,
+.active > .page-link {
+    background: #4b0082;
+    border-color: #4b0082;
+}
+
+.--bs-pagination-border-color {
+    background: #4b0082;
+}
+
+.page-item {
+    border-radius: 50%;
 }
