@@ -28,38 +28,14 @@ class EmployeeInfoController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
-
-        foreach ($request->form as $subcat) {
+        foreach ($request->form as $data) {
             EmployeeInfo::create([
-                'employee_id' => $subcat['id'],
-                'address' => $subcat['address'],
-                'phone' => $subcat['phone'],
-                'email' => $subcat['email'],
+                'employee_id' => $data['id'],
+                'address' => $data['address'],
+                'phone' => $data['phone'],
+                'email' => $data['email'],
             ]);
         }
-
-
-        // $count = count($request->id);
-        // for ($i = 0; $i < $count; $i++) {
-        //     $tss = new EmployeeInfo();
-        //     $tss->employee_id = $request['id'][$i];
-        //     $tss->address     = $request['address'][$i];
-        //     $tss->phone       = $request['phone'][$i];
-        //     $tss->email       = $request['email'][$i];
-        //     $tss->save();
-        // }
-
-        // foreach ($request->name as $subcat) {
-        //     Subcategory::create([
-        //         'category_id' => $request->category_id,
-        //         'name' => $subcat['name'],
-        //         'slug' => Str::slug($subcat['name']),
-        //         'status' => $subcat['status'],
-        //     ]);
-        // }
-
-
         return response()->json(['message' => 'Store Success'], 200);
     }
 
