@@ -42,7 +42,9 @@ const deleteData = (data) => {
 
 const StoreData = async () => {
     try {
-        let res = await axios.post("/employeeinfo", selectedData.value);
+        let res = await axios.post("/employeeinfo", {
+            form: selectedData.value,
+        });
         if (res.status === 200) {
             ElNotification({
                 title: "Success",
@@ -104,6 +106,9 @@ onMounted(() => {
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
+                    {{
+                        selectedData
+                    }}
                     <tbody v-if="employees.data">
                         <tr v-for="(emp, index) in employees.data" :key="index">
                             <td>{{ emp.name }}</td>
