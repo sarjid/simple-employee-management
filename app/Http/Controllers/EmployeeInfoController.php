@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\EmployeeInfo;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,17 @@ class EmployeeInfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $count = count($request->all());
+        for ($i = 0; $i < $count; $i++) {
+            $tss = new EmployeeInfo();
+            $tss->employee_id = $request['id'][$i];
+            $tss->address     = $request['address'][$i];
+            $tss->phone       = $request['phone'][$i];
+            $tss->email       = $request['email'][$i];
+            $tss->save();
+        }
+
+        return response()->json(['message' => 'Store Success'], 200);
     }
 
     /**

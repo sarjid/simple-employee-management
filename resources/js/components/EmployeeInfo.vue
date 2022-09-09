@@ -1,11 +1,12 @@
 <script setup>
 import Pagination from "laravel-vue-pagination";
+import { ElNotification } from "element-plus";
 import axios from "axios";
-import LaravelVuePagination from "laravel-vue-pagination";
 import { ref, onMounted, watch } from "vue";
 const employees = ref([]);
 const selectedData = ref([]);
 const limit = ref(5);
+const search = ref("");
 const getData = async (page = 1) => {
     try {
         let res = await axios.get(
@@ -18,8 +19,6 @@ const getData = async (page = 1) => {
         console.log(error);
     }
 };
-
-const search = ref("");
 
 watch(
     () => [...search.value],
@@ -34,8 +33,6 @@ const addData = (data) => {
               (item) => item != data.id
           ))
         : selectedData.value.unshift(data);
-
-    // selectedData.value.unshift(data);
 };
 
 const deleteData = (data) => {
@@ -43,7 +40,22 @@ const deleteData = (data) => {
     selectedData.value.splice(index, 1);
 };
 
-const StoreData = async () => {};
+const StoreData = async () => {
+    try {
+        let res = await axios.post("/employeeinfo", selectedData.value);
+        if (res.status === 200) {
+            ElNotification({
+                title: "Success",
+                message: "Added Success",
+                type: "success",
+            });
+
+            // selectedData.value = [];
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 onMounted(() => {
     getData();
@@ -141,16 +153,13 @@ onMounted(() => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr
-                                v-for="(data, index) in selectedData"
-                                :key="index"
-                            >
+                            <tr v-for="data in selectedData" :key="data.id">
                                 <th>
                                     <input
                                         type="text"
                                         class="form-control"
                                         readonly
-                                        :value="data.name"
+                                        :placeholder="data.name"
                                     />
                                 </th>
                                 <td>
@@ -158,6 +167,7 @@ onMounted(() => {
                                         type="text"
                                         class="form-control"
                                         placeholder="address"
+                                        v-model="data.address"
                                     />
                                 </td>
 
@@ -166,6 +176,7 @@ onMounted(() => {
                                         type="text"
                                         placeholder="phone"
                                         class="form-control"
+                                        v-model="data.phone"
                                     />
                                 </td>
 
@@ -174,6 +185,7 @@ onMounted(() => {
                                         type="text"
                                         placeholder="email"
                                         class="form-control"
+                                        v-model="data.email"
                                     />
                                 </td>
                                 <td>
