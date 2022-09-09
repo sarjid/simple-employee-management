@@ -52,7 +52,7 @@ const StoreData = async () => {
                 type: "success",
             });
 
-            // selectedData.value = [];
+            selectedData.value = [];
         }
     } catch (error) {
         console.log(error);
@@ -106,9 +106,6 @@ onMounted(() => {
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    {{
-                        selectedData
-                    }}
                     <tbody v-if="employees.data">
                         <tr v-for="(emp, index) in employees.data" :key="index">
                             <td>{{ emp.name }}</td>
