@@ -31,7 +31,7 @@ class EmployeeController extends Controller
      */
     public function index(Request $request)
     {
-        $employee = Employee::latest()->get();
+        $employee = Employee::all();
 
         if ($request->ajax()) {
             return DataTables::of($employee)
