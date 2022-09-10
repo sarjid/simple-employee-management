@@ -28,14 +28,18 @@ class EmployeeInfoController extends Controller
     public function store(Request $request)
     {
 
-        foreach ($request->form as $data) {
-            EmployeeInfo::create([
-                'employee_id' => $data['id'],
-                'address' => $data['address'],
-                'phone' => $data['phone'],
-                'email' => $data['email'],
-            ]);
+        try {
+            foreach ($request->form as $data) {
+                EmployeeInfo::create([
+                    'employee_id' => $data['id'],
+                    'address' => $data['address'],
+                    'phone' => $data['phone'],
+                    'email' => $data['email'],
+                ]);
+            }
+            return response()->json(['message' => 'Store Success'], 200);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
         }
-        return response()->json(['message' => 'Store Success'], 200);
     }
 }

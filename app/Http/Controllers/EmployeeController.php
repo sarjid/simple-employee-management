@@ -31,21 +31,25 @@ class EmployeeController extends Controller
      */
     public function index(Request $request)
     {
-        $employee = Employee::all();
+        try {
+            $employee = Employee::all();
 
-        if ($request->ajax()) {
-            return DataTables::of($employee)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $btn = '<a href="javascript:void(0)" data-toggle="modal"
+            if ($request->ajax()) {
+                return DataTables::of($employee)
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($row) {
+                        $btn = '<a href="javascript:void(0)" data-toggle="modal"
                             data-target="#editModal"  data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn-outline rounded-pill btn-sm editEmployee" >Edit</a>';
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-del rounded-pill btn-sm deleteEmployee" >Delete</a>';
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+                        $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-del rounded-pill btn-sm deleteEmployee" >Delete</a>';
+                        return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+            }
+            return view('employee.index', compact('employee'));
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
         }
-        return view('employee.index', compact('employee'));
     }
 
     /**
@@ -56,8 +60,12 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request)
     {
-        Employee::create($request->validated());
-        return response()->json(['message' => 'added Success'], 200);
+        try {
+            Employee::create($request->validated());
+            return response()->json(['message' => 'added Success'], 200);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
     }
 
     /**
@@ -80,8 +88,12 @@ class EmployeeController extends Controller
      */
     public function update(EmployeeRequest $request, Employee $employee)
     {
-        $employee->update($request->validated());
-        return response()->json(['message' => 'Update Success'], 200);
+        try {
+            $employee->update($request->validated());
+            return response()->json(['message' => 'Update Success'], 200);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
     }
 
     /**
@@ -92,7 +104,11 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        $employee->delete();
-        return response()->json(['message' => 'Delete Success'], 200);
+        try {
+            $employee->delete();
+            return response()->json(['message' => 'Delete Success'], 200);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
     }
 }
