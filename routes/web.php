@@ -27,7 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function () {
     Route::resource('employee', EmployeeController::class)->except([
         'create', 'edit'
-    ]);;
+    ]);
     Route::get('/employee-list', [EmployeeController::class, 'all'])->name('employee.all');
 
     Route::controller(EmployeeInfoController::class)->group(function () {
