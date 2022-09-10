@@ -83,7 +83,7 @@ const submit = async (values, { setErrors }) => {
             <div class="row mb-3">
                 <div class="col-md-6 offset-md-4">
                     <div class="form-check">
-                        <input
+                        <Field
                             class="form-check-input"
                             type="checkbox"
                             name="remember"

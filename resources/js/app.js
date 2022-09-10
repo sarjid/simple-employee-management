@@ -5,10 +5,11 @@ import "element-plus/dist/index.css";
 const app = createApp({});
 import AddNewEmployee from "./components/AddNewEmployee.vue";
 import EmployeeInfo from "./components/EmployeeInfo.vue";
-import login from "./components/Login.vue";
-
+import Login from "./components/Login.vue";
+import Register from "./components/Register.vue";
 app.component("add-employee", AddNewEmployee);
 app.component("employee-info", EmployeeInfo);
-app.component("user-login", login);
+app.component("user-login", Login);
+app.component("user-register", Register);
 app.use(ElementPlus);
 app.mount("#app");
